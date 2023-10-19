@@ -16,6 +16,12 @@
 		76C1387A2AE0B40E001215AA /* password_managerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C138792AE0B40E001215AA /* password_managerTests.swift */; };
 		76C138842AE0B40E001215AA /* password_managerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C138832AE0B40E001215AA /* password_managerUITests.swift */; };
 		76C138862AE0B40E001215AA /* password_managerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C138852AE0B40E001215AA /* password_managerUITestsLaunchTests.swift */; };
+		76C1389C2AE0C89E001215AA /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C1389B2AE0C89E001215AA /* AuthenticationServices.framework */; };
+		76C1389F2AE0C89E001215AA /* CredentialProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C1389E2AE0C89E001215AA /* CredentialProviderViewController.swift */; };
+		76C138A22AE0C89E001215AA /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76C138A02AE0C89E001215AA /* MainInterface.storyboard */; };
+		76C138A72AE0C89E001215AA /* provider.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 76C138992AE0C89E001215AA /* provider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		76C138AF2AE0EBE5001215AA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C138AE2AE0EBE5001215AA /* FirstViewController.swift */; };
+		76C138B12AE0F74C001215AA /* FirstView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76C138B02AE0F74C001215AA /* FirstView.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +39,28 @@
 			remoteGlobalIDString = 76C1385E2AE0B40B001215AA;
 			remoteInfo = "password-manager";
 		};
+		76C138A52AE0C89E001215AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76C138572AE0B40B001215AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76C138982AE0C89E001215AA;
+			remoteInfo = provider;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		76C138AB2AE0C89E001215AA /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				76C138A72AE0C89E001215AA /* provider.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		76C1385F2AE0B40B001215AA /* password-manager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "password-manager.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +76,15 @@
 		76C1387F2AE0B40E001215AA /* password-managerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "password-managerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C138832AE0B40E001215AA /* password_managerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = password_managerUITests.swift; sourceTree = "<group>"; };
 		76C138852AE0B40E001215AA /* password_managerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = password_managerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		76C138942AE0B700001215AA /* password-manager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "password-manager.entitlements"; sourceTree = "<group>"; };
+		76C138992AE0C89E001215AA /* provider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = provider.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		76C1389B2AE0C89E001215AA /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
+		76C1389E2AE0C89E001215AA /* CredentialProviderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialProviderViewController.swift; sourceTree = "<group>"; };
+		76C138A12AE0C89E001215AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		76C138A32AE0C89E001215AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76C138A42AE0C89E001215AA /* provider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = provider.entitlements; sourceTree = "<group>"; };
+		76C138AE2AE0EBE5001215AA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		76C138B02AE0F74C001215AA /* FirstView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +109,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		76C138962AE0C89E001215AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76C1389C2AE0C89E001215AA /* AuthenticationServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -82,6 +126,8 @@
 				76C138612AE0B40B001215AA /* password-manager */,
 				76C138782AE0B40E001215AA /* password-managerTests */,
 				76C138822AE0B40E001215AA /* password-managerUITests */,
+				76C1389D2AE0C89E001215AA /* provider */,
+				76C1389A2AE0C89E001215AA /* Frameworks */,
 				76C138602AE0B40B001215AA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +138,7 @@
 				76C1385F2AE0B40B001215AA /* password-manager.app */,
 				76C138752AE0B40E001215AA /* password-managerTests.xctest */,
 				76C1387F2AE0B40E001215AA /* password-managerUITests.xctest */,
+				76C138992AE0C89E001215AA /* provider.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +146,7 @@
 		76C138612AE0B40B001215AA /* password-manager */ = {
 			isa = PBXGroup;
 			children = (
+				76C138942AE0B700001215AA /* password-manager.entitlements */,
 				76C138622AE0B40B001215AA /* AppDelegate.swift */,
 				76C138642AE0B40B001215AA /* SceneDelegate.swift */,
 				76C138662AE0B40B001215AA /* ViewController.swift */,
@@ -127,6 +175,27 @@
 			path = "password-managerUITests";
 			sourceTree = "<group>";
 		};
+		76C1389A2AE0C89E001215AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				76C1389B2AE0C89E001215AA /* AuthenticationServices.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		76C1389D2AE0C89E001215AA /* provider */ = {
+			isa = PBXGroup;
+			children = (
+				76C1389E2AE0C89E001215AA /* CredentialProviderViewController.swift */,
+				76C138A02AE0C89E001215AA /* MainInterface.storyboard */,
+				76C138A32AE0C89E001215AA /* Info.plist */,
+				76C138A42AE0C89E001215AA /* provider.entitlements */,
+				76C138AE2AE0EBE5001215AA /* FirstViewController.swift */,
+				76C138B02AE0F74C001215AA /* FirstView.storyboard */,
+			);
+			path = provider;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,10 +206,12 @@
 				76C1385B2AE0B40B001215AA /* Sources */,
 				76C1385C2AE0B40B001215AA /* Frameworks */,
 				76C1385D2AE0B40B001215AA /* Resources */,
+				76C138AB2AE0C89E001215AA /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				76C138A62AE0C89E001215AA /* PBXTargetDependency */,
 			);
 			name = "password-manager";
 			productName = "password-manager";
@@ -183,6 +254,23 @@
 			productReference = 76C1387F2AE0B40E001215AA /* password-managerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		76C138982AE0C89E001215AA /* provider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76C138A82AE0C89E001215AA /* Build configuration list for PBXNativeTarget "provider" */;
+			buildPhases = (
+				76C138952AE0C89E001215AA /* Sources */,
+				76C138962AE0C89E001215AA /* Frameworks */,
+				76C138972AE0C89E001215AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = provider;
+			productName = provider;
+			productReference = 76C138992AE0C89E001215AA /* provider.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -204,6 +292,9 @@
 						CreatedOnToolsVersion = 15.0;
 						TestTargetID = 76C1385E2AE0B40B001215AA;
 					};
+					76C138982AE0C89E001215AA = {
+						CreatedOnToolsVersion = 15.0;
+					};
 				};
 			};
 			buildConfigurationList = 76C1385A2AE0B40B001215AA /* Build configuration list for PBXProject "password-manager" */;
@@ -222,6 +313,7 @@
 				76C1385E2AE0B40B001215AA /* password-manager */,
 				76C138742AE0B40E001215AA /* password-managerTests */,
 				76C1387E2AE0B40E001215AA /* password-managerUITests */,
+				76C138982AE0C89E001215AA /* provider */,
 			);
 		};
 /* End PBXProject section */
@@ -248,6 +340,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76C138972AE0C89E001215AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76C138B12AE0F74C001215AA /* FirstView.storyboard in Resources */,
+				76C138A22AE0C89E001215AA /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +382,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		76C138952AE0C89E001215AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76C1389F2AE0C89E001215AA /* CredentialProviderViewController.swift in Sources */,
+				76C138AF2AE0EBE5001215AA /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -293,6 +403,11 @@
 			isa = PBXTargetDependency;
 			target = 76C1385E2AE0B40B001215AA /* password-manager */;
 			targetProxy = 76C138802AE0B40E001215AA /* PBXContainerItemProxy */;
+		};
+		76C138A62AE0C89E001215AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76C138982AE0C89E001215AA /* provider */;
+			targetProxy = 76C138A52AE0C89E001215AA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -311,6 +426,14 @@
 				76C1386E2AE0B40E001215AA /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		76C138A02AE0C89E001215AA /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				76C138A12AE0C89E001215AA /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -438,8 +561,10 @@
 		76C1388A2AE0B40E001215AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "password-manager/password-manager.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G87Y5ZTXUF;
@@ -466,8 +591,10 @@
 		76C1388B2AE0B40E001215AA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "password-manager/password-manager.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G87Y5ZTXUF;
@@ -567,6 +694,58 @@
 			};
 			name = Release;
 		};
+		76C138A92AE0C89E001215AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = provider/provider.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G87Y5ZTXUF;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = provider/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = provider;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "tucur.prg.password-manager.provider";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		76C138AA2AE0C89E001215AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = provider/provider.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G87Y5ZTXUF;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = provider/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = provider;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "tucur.prg.password-manager.provider";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -602,6 +781,15 @@
 			buildConfigurations = (
 				76C138902AE0B40E001215AA /* Debug */,
 				76C138912AE0B40E001215AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		76C138A82AE0C89E001215AA /* Build configuration list for PBXNativeTarget "provider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76C138A92AE0C89E001215AA /* Debug */,
+				76C138AA2AE0C89E001215AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
