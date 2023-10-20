@@ -4,13 +4,19 @@
 <dict>
 	<key>NSExtension</key>
 	<dict>
-		<!-- パスワードオプションの画面でチェックをつけた時にCustom UIを呼び出すためのオプション { -->
 		<key>NSExtensionAttributes</key>
 		<dict>
+			<!-- パスワードオプションの画面でチェックをつけた時にCustom UIを呼び出すためのオプション -->
 			<key>ASCredentialProviderExtensionShowsConfigurationUI</key>
 			<true/>
+
+			<key>ASCredentialProviderExtensionCapabilities</key>
+			<dict>
+				<!-- パスキーを作成できるようにするためのオプション -->
+				<key>ProvidesPasskeys</key>
+				<true/>
+			</dict>
 		</dict>
-		<!-- } -->
 		<key>NSExtensionMainStoryboard</key>
 		<string>MainInterface</string>
 		<key>NSExtensionPointIdentifier</key>

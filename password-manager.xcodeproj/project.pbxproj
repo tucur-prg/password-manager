@@ -22,6 +22,7 @@
 		76C138A72AE0C89E001215AA /* provider.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 76C138992AE0C89E001215AA /* provider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76C138AF2AE0EBE5001215AA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C138AE2AE0EBE5001215AA /* FirstViewController.swift */; };
 		76C138B12AE0F74C001215AA /* FirstView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76C138B02AE0F74C001215AA /* FirstView.storyboard */; };
+		76C138B42AE23A9F001215AA /* CBORCoding in Frameworks */ = {isa = PBXBuildFile; productRef = 76C138B32AE23A9F001215AA /* CBORCoding */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76C138B42AE23A9F001215AA /* CBORCoding in Frameworks */,
 				76C1389C2AE0C89E001215AA /* AuthenticationServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +269,9 @@
 			dependencies = (
 			);
 			name = provider;
+			packageProductDependencies = (
+				76C138B32AE23A9F001215AA /* CBORCoding */,
+			);
 			productName = provider;
 			productReference = 76C138992AE0C89E001215AA /* provider.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -306,6 +311,9 @@
 				Base,
 			);
 			mainGroup = 76C138562AE0B40B001215AA;
+			packageReferences = (
+				76C138B22AE239C6001215AA /* XCRemoteSwiftPackageReference "CBORCoding" */,
+			);
 			productRefGroup = 76C138602AE0B40B001215AA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -795,6 +803,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		76C138B22AE239C6001215AA /* XCRemoteSwiftPackageReference "CBORCoding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SomeRandomiOSDev/CBORCoding.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		76C138B32AE23A9F001215AA /* CBORCoding */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 76C138B22AE239C6001215AA /* XCRemoteSwiftPackageReference "CBORCoding" */;
+			productName = CBORCoding;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 76C138572AE0B40B001215AA /* Project object */;
 }
