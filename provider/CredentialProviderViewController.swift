@@ -52,13 +52,17 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
               publicKeyCbor => { 1: 2, 3: -7, -1: 1, -2: Uint8 , -3: Uint8}
         */
 
+        var authData = Data()
+        var attestationObject: Data?
+
         let rpIdHash = Data(SHA256.hash(data: passkeyCredentialIdentity.relyingPartyIdentifier.data(using: .utf8)!))
         let flags = Data([ UInt8(0x01 | 0x04 | 0x40 | 0x80) ])
         let signCount = Data([0, 0, 0, 0])
         let aaguid = Data([0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 4, 5, 6, 7])
         let credentialIdLength = Data([0, 32])
         let credentialId = Data([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
-        var credentialPublicKey = Data()
+        var credentialPublicKey: Data?
+
         do {
             var error: Unmanaged<CFError>?
 
@@ -83,28 +87,28 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
                     y: k2.subdata(in: 33..<65)
                 )
             )
-            NSLog(credentialPublicKey.hexEncodedString())
-        } catch {
-            NSLog("error")
-        }
+            
+            authData.append(rpIdHash)
+            authData.append(flags)
+            authData.append(signCount)
+            authData.append(aaguid)
+            authData.append(credentialIdLength)
+            authData.append(credentialId)
+            authData.append(credentialPublicKey!)
 
-        let authData = rpIdHash + flags + signCount + aaguid + credentialIdLength + credentialId + credentialPublicKey
+            guard let signature = SecKeyCreateSignature(
+              privateKey,
+              .ecdsaSignatureMessageX962SHA256,
+              authData as CFData,
+              &error) as Data?
+            else {
+              throw NSError(domain: "sign error", code: -1, userInfo: nil)
+            }
 
-        NSLog(rpIdHash.hexEncodedString())
-        NSLog(flags.hexEncodedString())
-        NSLog(signCount.hexEncodedString())
-        NSLog(aaguid.hexEncodedString())
-        NSLog(credentialIdLength.hexEncodedString())
-        NSLog(credentialId.hexEncodedString())
-
-        NSLog(authData.hexEncodedString())
-
-        var attestationObject = Data()
-        do {
             attestationObject = try encoder.encode(
                 AttestationObject(
                     fmt: "packed",
-                    attStmt: AttStmt(alg: -7, sig: Data()),
+                    attStmt: AttStmt(alg: -7, sig: signature),
                     authData: authData
                 )
             )
@@ -112,17 +116,33 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
             NSLog("error")
         }
 
-        NSLog(attestationObject.hexEncodedString())
-        NSLog(attestationObject.base64EncodedString())
+        NSLog(rpIdHash.hexEncodedString())
+        NSLog(flags.hexEncodedString())
+        NSLog(signCount.hexEncodedString())
+        NSLog(aaguid.hexEncodedString())
+        NSLog(credentialIdLength.hexEncodedString())
+        NSLog(credentialId.hexEncodedString())
+        NSLog(credentialPublicKey!.hexEncodedString())
+
+        NSLog(authData.hexEncodedString())
+
+        NSLog(attestationObject!.hexEncodedString())
+        NSLog(attestationObject!.base64EncodedString())
 
         let passkeyCredential = ASPasskeyRegistrationCredential(
             relyingParty: passkeyCredentialIdentity.relyingPartyIdentifier,
             clientDataHash: passkeyRequest.clientDataHash,
             credentialID: credentialId,
-            attestationObject: attestationObject
+            attestationObject: attestationObject!
         )
 
-        self.extensionContext.completeRegistrationRequest(using: passkeyCredential, completionHandler: nil)
+        self.extensionContext.completeRegistrationRequest(using: passkeyCredential) { success in
+            if success {
+                NSLog("completeRegistrationRequest success")
+            } else {
+                NSLog("completeRegistrationRequest failer")
+            }
+        }
     }
 
     override func prepareInterfaceForExtensionConfiguration() {
