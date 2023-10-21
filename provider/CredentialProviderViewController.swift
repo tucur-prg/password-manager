@@ -38,25 +38,27 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
         let passkeyRequest = registrationRequest as! ASPasskeyCredentialRequest
         let passkeyCredentialIdentity = passkeyRequest.credentialIdentity as! ASPasskeyCredentialIdentity
 
+        NSLog("ClientDataHash: \(passkeyRequest.clientDataHash.hexEncodedString())")
+        NSLog("UserVerification: \(passkeyRequest.userVerificationPreference.rawValue)")
+        for alg in passkeyRequest.supportedAlgorithms {
+            NSLog("Alg: \(alg.rawValue)")
+        }
+
+        NSLog("User: \(passkeyCredentialIdentity.user)")
         NSLog("UserName: \(passkeyCredentialIdentity.userName)")
         NSLog("RelyingPartyIdentifier: \(passkeyCredentialIdentity.relyingPartyIdentifier)")
-        NSLog("ClientDataHash: \(passkeyRequest.clientDataHash.description)")
+        NSLog("Rank: \(passkeyCredentialIdentity.rank)")
+        NSLog("UserHandle: \(passkeyCredentialIdentity.userHandle.hexEncodedString())")
+        NSLog("CredentialID: \(passkeyCredentialIdentity.credentialID.hexEncodedString())")
 
-        /*
-        attestationObject
-          .fmt
-          .attStmt
-            .alg
-            .sig Uint8
-          .authData Uint8 => | 32 byte rpIdHash | 1 byte flags | 4 byte signCount | 16 byte aaguid | 2 byte credentialIdLength | x byte credentialId | x byte publicKeyCbor |
-              publicKeyCbor => { 1: 2, 3: -7, -1: 1, -2: Uint8 , -3: Uint8}
-        */
+        NSLog(passkeyCredentialIdentity.recordIdentifier ??  "<nil>")
 
         var authData = Data()
         var attestationObject: Data?
-
-        let rpIdHash = Data(SHA256.hash(data: passkeyCredentialIdentity.relyingPartyIdentifier.data(using: .utf8)!))
-        let flags = Data([ UInt8(0x01 | 0x04 | 0x40 | 0x80) ])
+        
+        let rpId = passkeyCredentialIdentity.relyingPartyIdentifier
+        let rpIdHash = Data(SHA256.hash(data: rpId.data(using: .utf8)!))
+        let flags = Data([ UInt8(0x01 | 0x04 | 0x08 | 0x10 | 0x40 | 0x80) ])
         let signCount = Data([0, 0, 0, 0])
         let aaguid = Data([0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 2, 3, 4, 5, 6, 7])
         let credentialIdLength = Data([0, 32])
@@ -80,9 +82,9 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
 
             credentialPublicKey = try encoder.encode(
                 CredentialPublicKeyEc(
-                    typ: 2,
-                    alg: -7,
-                    crv: 1,
+                    typ: 2, // EC2
+                    alg: -7, // ES256
+                    crv: 1, // P-256
                     x: k2.subdata(in: 1..<33),
                     y: k2.subdata(in: 33..<65)
                 )
@@ -96,19 +98,10 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
             authData.append(credentialId)
             authData.append(credentialPublicKey!)
 
-            guard let signature = SecKeyCreateSignature(
-              privateKey,
-              .ecdsaSignatureMessageX962SHA256,
-              authData as CFData,
-              &error) as Data?
-            else {
-              throw NSError(domain: "sign error", code: -1, userInfo: nil)
-            }
-
             attestationObject = try encoder.encode(
                 AttestationObject(
-                    fmt: "packed",
-                    attStmt: AttStmt(alg: -7, sig: signature),
+                    fmt: "none", // "packed"は未対応だった
+                    attStmt: [String:String](),
                     authData: authData
                 )
             )
@@ -270,13 +263,8 @@ extension Data {
 
 struct AttestationObject: Codable {
     var fmt: String
-    var attStmt: AttStmt
+    var attStmt: [String: String]
     var authData: Data
-}
-
-struct AttStmt: Codable {
-    var alg: Int
-    var sig: Data
 }
 
 struct CredentialPublicKeyEc: Codable {
