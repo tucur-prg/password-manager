@@ -323,7 +323,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
                     user: "hogefuga",
                   recordIdentifier: nil)
 
-                store.saveCredentialIdentities([credential]) { bool, error in
+                store.saveCredentialIdentities([credential as ASCredentialIdentity]) { bool, error in
                     if let error = error {
                         NSLog(error.localizedDescription)
                     } else {
