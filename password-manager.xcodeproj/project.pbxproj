@@ -23,6 +23,11 @@
 		76C138AF2AE0EBE5001215AA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C138AE2AE0EBE5001215AA /* FirstViewController.swift */; };
 		76C138B12AE0F74C001215AA /* FirstView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76C138B02AE0F74C001215AA /* FirstView.storyboard */; };
 		76C138B42AE23A9F001215AA /* CBORCoding in Frameworks */ = {isa = PBXBuildFile; productRef = 76C138B32AE23A9F001215AA /* CBORCoding */; };
+		76C138B62AE4DE75001215AA /* Attestation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C138B52AE4DE75001215AA /* Attestation.swift */; };
+		76C138B82AE4E356001215AA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C138B72AE4E356001215AA /* Constants.swift */; };
+		76C138BA2AE4ECB8001215AA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C138B92AE4ECB8001215AA /* Extensions.swift */; };
+		76C138BC2AE4EE99001215AA /* Assertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C138BB2AE4EE99001215AA /* Assertion.swift */; };
+		76C138BE2AE4F49A001215AA /* Ecc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C138BD2AE4F49A001215AA /* Ecc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +91,11 @@
 		76C138A42AE0C89E001215AA /* provider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = provider.entitlements; sourceTree = "<group>"; };
 		76C138AE2AE0EBE5001215AA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		76C138B02AE0F74C001215AA /* FirstView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FirstView.storyboard; sourceTree = "<group>"; };
+		76C138B52AE4DE75001215AA /* Attestation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attestation.swift; sourceTree = "<group>"; };
+		76C138B72AE4E356001215AA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		76C138B92AE4ECB8001215AA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		76C138BB2AE4EE99001215AA /* Assertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assertion.swift; sourceTree = "<group>"; };
+		76C138BD2AE4F49A001215AA /* Ecc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ecc.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +204,11 @@
 				76C138A42AE0C89E001215AA /* provider.entitlements */,
 				76C138AE2AE0EBE5001215AA /* FirstViewController.swift */,
 				76C138B02AE0F74C001215AA /* FirstView.storyboard */,
+				76C138B52AE4DE75001215AA /* Attestation.swift */,
+				76C138B72AE4E356001215AA /* Constants.swift */,
+				76C138B92AE4ECB8001215AA /* Extensions.swift */,
+				76C138BB2AE4EE99001215AA /* Assertion.swift */,
+				76C138BD2AE4F49A001215AA /* Ecc.swift */,
 			);
 			path = provider;
 			sourceTree = "<group>";
@@ -394,8 +409,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76C138BE2AE4F49A001215AA /* Ecc.swift in Sources */,
+				76C138BA2AE4ECB8001215AA /* Extensions.swift in Sources */,
 				76C1389F2AE0C89E001215AA /* CredentialProviderViewController.swift in Sources */,
+				76C138BC2AE4EE99001215AA /* Assertion.swift in Sources */,
 				76C138AF2AE0EBE5001215AA /* FirstViewController.swift in Sources */,
+				76C138B62AE4DE75001215AA /* Attestation.swift in Sources */,
+				76C138B82AE4E356001215AA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
