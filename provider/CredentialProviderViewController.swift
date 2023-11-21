@@ -81,13 +81,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
                 credentialID: credentialId
             )
 
-            self.extensionContext.completeAssertionRequest(using: passkeyCredential) { success in
-                if success {
-                    NSLog("completeAssertionRequest success")
-                } else {
-                    NSLog("completeAssertionRequest failer")
-                }
-            }
+            self.extensionContext.completeAssertionRequest(using: passkeyCredential)
         } else {
             let passwordRequest = credentialRequest as! ASPasswordCredentialRequest
             let passwordCredentialIdentity = passwordRequest.credentialIdentity as! ASPasswordCredentialIdentity
@@ -98,13 +92,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
 
             // パスワード情報をRecordIdentifierの値を使って引き出す
             let passwordCredential = ASPasswordCredential(user: user, password: "xxxx")
-            self.extensionContext.completeRequest(withSelectedCredential: passwordCredential) { success in
-                if success {
-                    NSLog("completeRequest success")
-                } else {
-                    NSLog("completeRequest failer")
-                }
-            }
+            self.extensionContext.completeRequest(withSelectedCredential: passwordCredential)
         }
     }
 
@@ -158,32 +146,25 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
             attestationObject: attestationObject!
         )
 
-        self.extensionContext.completeRegistrationRequest(using: passkeyCredential) { success in
-            if success {
-                NSLog("completeRegistrationRequest success")
-            } else {
-                NSLog("completeRegistrationRequest failer")
-            }
-        }
+        self.extensionContext.completeRegistrationRequest(using: passkeyCredential) { _ in
+            let store = ASCredentialIdentityStore.shared;
+            store.getState {state in
+                if state.isEnabled {
+                    // navigator.credentials.get の項目に表示されるようにする
+                    let credential = ASPasskeyCredentialIdentity(
+                        relyingPartyIdentifier: rpId,
+                        userName: userName,
+                        credentialID: credentialId!,
+                        userHandle: userHandle,
+                        recordIdentifier: recordIdentifier
+                    )
 
-        // completeRegistrationRequest が failer のほうにいくので一旦ここに
-        let store = ASCredentialIdentityStore.shared;
-        store.getState {state in
-            if state.isEnabled {
-                // navigator.credentials.get の項目に表示されるようにする
-                let credential = ASPasskeyCredentialIdentity(
-                    relyingPartyIdentifier: rpId,
-                    userName: userName,
-                    credentialID: credentialId!,
-                    userHandle: userHandle,
-                    recordIdentifier: recordIdentifier
-                )
-
-                store.saveCredentialIdentities([credential]) { bool, error in
-                    if let error = error {
-                        NSLog(error.localizedDescription)
-                    } else {
-                        NSLog("passkey save success")
+                    store.saveCredentialIdentities([credential]) { bool, error in
+                        if let error = error {
+                            NSLog(error.localizedDescription)
+                        } else {
+                            NSLog("passkey save success")
+                        }
                     }
                 }
             }
