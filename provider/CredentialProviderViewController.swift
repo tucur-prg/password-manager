@@ -66,7 +66,8 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
                 signature = try ecc.signature(message)
             } catch {
                 NSLog("error")
-                self.extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain, code: ASExtensionError.failed.rawValue))
+                // cancelRequest だとモーダルが閉じないので空のクレデンシャルを返してる
+                self.extensionContext.completeAssertionRequest(using: ASPasskeyAssertionCredential())
                 return
             }
 
@@ -134,7 +135,8 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
             attestationObject = try attestation.toCBOR()
         } catch {
             NSLog("error")
-            self.extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain, code: ASExtensionError.failed.rawValue))
+            // cancelRequest だとモーダルが閉じないので空のクレデンシャルを返してる
+            self.extensionContext.completeRegistrationRequest(using: ASPasskeyRegistrationCredential())
             return
         }
 
