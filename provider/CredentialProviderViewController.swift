@@ -65,8 +65,9 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
             do {
                 signature = try ecc.signature(message)
             } catch {
-                // extensionContext.cancelRequest を投げる
                 NSLog("error")
+                self.extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain, code: ASExtensionError.failed.rawValue))
+                return
             }
 
             NSLog(authenticatorData.hexEncodedString())
@@ -132,8 +133,9 @@ class CredentialProviderViewController: ASCredentialProviderViewController {
             credentialId = attestation.getCredentialId()
             attestationObject = try attestation.toCBOR()
         } catch {
-            // extensionContext.cancelRequest を投げる
             NSLog("error")
+            self.extensionContext.cancelRequest(withError: NSError(domain: ASExtensionErrorDomain, code: ASExtensionError.failed.rawValue))
+            return
         }
 
         NSLog(attestationObject!.hexEncodedString())
