@@ -16,4 +16,4 @@ let ED = 0x80
 
 let EC2 = 2
 let ES256 = -7
-let P256 = -1
+let P256 = 1

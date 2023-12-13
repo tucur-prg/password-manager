@@ -22,7 +22,7 @@ class Attestation : NSObject {
     
     init(rpId: String) {
         self.rpIdHash = Data(SHA256.hash(data: rpId.data(using: .utf8)!))
-        self.flags = Data([ UInt8(UP | UV | BE | BS | AT | ED) ])
+        self.flags = Data([ UInt8(UP | UV | BE | BS | AT) ])
         self.credentialId = Data([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
         self.credentialIdLength = Data([0, UInt8(self.credentialId.count)])
     }
@@ -85,11 +85,11 @@ struct CredentialPublicKeyEc: Codable {
     var x: Data
     var y: Data
 
-    private enum CodingKeys: String, CodingKey {
-        case typ = "1"
-        case alg = "3"
-        case crv = "-1"
-        case x = "-2"
-        case y = "-3"
+    private enum CodingKeys: Int, CodingKey {
+        case typ = 1
+        case alg = 3
+        case crv = -1
+        case x = -2
+        case y = -3
     }
 }
